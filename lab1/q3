@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+
+int main(){
+    int num, target;
+    cout<<"enter number of array elements: "<<endl;
+    cin >> num;
+    int arr[num];
+    cout<<"enter target: "<<endl;
+    cin >> target;
+
+    for(int i=0;i<num;i++){
+        for(int j=i+1;j<num;j++){
+            if (arr[i]+arr[j]==target){
+                cout << "["<<arr[i]<<","<<arr[j]<<"]";
+                return 0;
+            }
+        }
+    }
+    cout<<"no pair found"<<endl;
+    return 0;
+}
