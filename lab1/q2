@@ -27,11 +27,11 @@ int main(){
     int num;
     cout<<"enter number of students: ";
     cin>>num;
-    student arr[num];
+    student *arr=new student[num];
     //input individual marks for each student
     for(int i=0;i<num;i++){
         cout<<"enter math marks: ";
-        cin >> arr[i].math;
+        cin >> arr[i].mth;
         cout<<"enter english marks: ";
         cin >> arr[i].eng;
         cout<<"enter science marks: ";
@@ -44,9 +44,13 @@ int main(){
         int total = arr[i].mth + arr[i].eng + arr[i].sci;
         float avg= total/3;
 
+        cout<<"student "<<i+1<<": "<<endl;
         cout << "math grade: " << grade(arr[i].mth)<<endl;
         cout << "english grade: " << grade(arr[i].eng)<<endl;
         cout << "science grade: " << grade(arr[i].sci)<<endl;
+        cout<<"total marks: "<<total<<endl;
+        cout<<"average marks: "<<avg<<endl;
+        cout<<endl;
     }
     return 0;
 }
