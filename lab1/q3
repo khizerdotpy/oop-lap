@@ -5,7 +5,7 @@ int main(){
     int num, target;
     cout<<"enter number of array elements: "<<endl;
     cin >> num;
-    int arr[num];
+    int *arr=new int[num];
     cout<<"enter target: "<<endl;
     cin >> target;
 
