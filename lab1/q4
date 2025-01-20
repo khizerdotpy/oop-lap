@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+
+
+// arr(9)=[0,1,2,3,4,5,6,7,8];
+// xlength=j-i
+// if arr[j]<arr[i]
+// ylength=arr[j]
+// else 
+// ylength=arr[i]
+// area= xlength * ylength
+
+int main(){
+    int xlen=0,ylen=0,area=0;
+    int height[]={1,8,6,2,5,4,8,3,7};
+    int arr[]={0,1,2,3,4,5,6,7,8};
+    int max_area=0;
+    for(int i=0;i<9;i++){
+        for(int j=i+1;j<9;j++){
+            xlen=j-i;
+            if (height[i]<height[j]){
+                ylen=height[i];
+            } else {
+                ylen=height[j];
+            }
+            area=xlen*ylen;
+            if (area>max_area){
+                max_area=area;
+            }
+        }
+    }
+    cout<<"max area is: "<<max_area;
+    return 0;
+
+}
