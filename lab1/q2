@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+
+typedef struct student {
+    int mth;
+    int eng;
+    int sci;
+} student;
+
+char grade(int x){
+    if (x>=90){
+        return 'A';
+    }else if(x>=80 && x<90){
+        return 'B';
+    }else if(x>=70 && x<80){
+        return 'C';
+    }else if(x>=60 && x<70){
+        return 'D';
+    } else {
+        return 'F';
+    }
+    return 0;
+}
+
+int main(){
+    
+    int num;
+    cout<<"enter number of students: ";
+    cin>>num;
+    student arr[num];
+    //input individual marks for each student
+    for(int i=0;i<num;i++){
+        cout<<"enter math marks: ";
+        cin >> arr[i].math;
+        cout<<"enter english marks: ";
+        cin >> arr[i].eng;
+        cout<<"enter science marks: ";
+        cin >> arr[i].sci;
+        cout<<endl;
+    }
+    //calc total and average marks for each and grade
+
+    for(int i=0;i<num;i++){
+        int total = arr[i].mth + arr[i].eng + arr[i].sci;
+        float avg= total/3;
+
+        cout << "math grade: " << grade(arr[i].mth)<<endl;
+        cout << "english grade: " << grade(arr[i].eng)<<endl;
+        cout << "science grade: " << grade(arr[i].sci)<<endl;
+    }
+    return 0;
+}
