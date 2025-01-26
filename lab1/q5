@@ -21,6 +21,7 @@ int main() {
 
     cout << "Enter the total number of events: ";
     cin >> num;
+    cin.ignore();
 
     Event* events = new Event[num];
 
@@ -46,6 +47,7 @@ int main() {
         cout << "3. Exit" << endl;
         cout << "Enter your choice: ";
         cin >> choice;
+        cin.ignore();
 
         switch (choice) {
             case 1: {
@@ -84,7 +86,7 @@ int main() {
             }
         }
     } while (choice != 3);
-    
+
     delete[] events;
 
     return 0;
