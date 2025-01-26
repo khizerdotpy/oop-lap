@@ -1,0 +1,91 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Event {
+    string name;
+    string date;
+    string venue;
+    string organizer;
+};
+
+void display(const Event& event) {
+    cout << "Event Name: " << event.name << endl;
+    cout << "Date: " << event.date << endl;
+    cout << "Venue: " << event.venue << endl;
+    cout << "Organizer: " << event.organizer << endl;
+}
+
+int main() {
+    int num;
+
+    cout << "Enter the total number of events: ";
+    cin >> num;
+
+    Event* events = new Event[num];
+
+    // input
+    for (int i = 0; i < num; ++i) {
+        cout << "\nEnter details for event " << i + 1 << ":" << endl;
+        cout << "Event Name: ";
+        getline(cin, events[i].name);
+        cout << "Date (DD/MM/YYYY): ";
+        getline(cin, events[i].date);
+        cout << "Venue: ";
+        getline(cin, events[i].venue);
+        cout << "Organizer: ";
+        getline(cin, events[i].organizer);
+    }
+
+    // menu for display
+    int choice;
+    do {
+        cout << "\nEvent Management System Menu:" << endl;
+        cout << "1. Display all events" << endl;
+        cout << "2. Search for events by date (DD/MM/YYYY)" << endl;
+        cout << "3. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1: {
+                cout << "\nDisplaying all events:" << endl;
+                for (int i = 0; i < num; ++i) {
+                    display(events[i]);
+                }
+                break;
+            }
+            case 2: {
+                string searchDate;
+                cout << "\nEnter the date (DD/MM/YYYY) to search for events on that date: ";
+                getline(cin, searchDate);
+
+                bool found = false;
+                cout << "\nEvents on " << searchDate << ":" << endl;
+                for (int i = 0; i < num; ++i) {
+                    if (events[i].date == searchDate) {
+                        display(events[i]);
+                        found = true;
+                    }
+                }
+
+                if (!found) {
+                    cout << "No events found on this date." << endl;
+                }
+                break;
+            }
+            case 3: {
+                cout << "Exiting the Event Management System." << endl;
+                break;
+            }
+            default: {
+                cout << "Invalid choice.try again." << endl;
+                break;
+            }
+        }
+    } while (choice != 3);
+    
+    delete[] events;
+
+    return 0;
+}
