@@ -1,0 +1,75 @@
+/*Write a C++ program that:
+ Reads n strings from the user and stores them in a dynamically allocated array of char*.
+ Prints the strings in reverse order using pointer arithmetic.
+ Finds and prints the string with the most vowels (a, e, i, o, u).
+ Calculates and prints the average length of all the strings.*/
+
+#include <iostream>
+using namespace std;
+#include <cstring>
+
+void reverse(char *arr,int size){
+    char *sptr,*eptr;
+    char temp;
+    sptr=arr;
+    eptr=&arr[strlen(arr)-1];
+    while(sptr<eptr){
+        temp=*sptr;
+        *sptr=*eptr;
+        *eptr=temp;
+
+        sptr++;
+        eptr--;
+    }
+}
+
+int vowelnum(char *arr){
+    int count=0;
+    for(int i=0;i!='\0';i++){
+        if(arr[i]=='a'||arr[i]=='A'||arr[i]=='e'||arr[i]=='E'||arr[i]=='i'||arr[i]=='I'||arr[i]=='o'||arr[i]=='O'||arr[i]=='u'||arr[i]=='U'){
+            count++;
+        }
+    }
+    return count;
+}
+
+int main(){
+    int sz;
+    cout<<"enter number of strings: ";
+    cin>>sz;
+    cin.ignore();
+    int max=50;
+    char **strings=new char*[sz];
+    for(int i=0;i<sz;i++){
+        strings[i]=new char[max];
+    }
+    //input strings
+    for(int i=0;i<sz;i++){
+        cout<<"enter string "<<i+1<<": ";
+        cin.getline(strings[i],max);
+    }
+    //reverse
+    for(int i=0;i<sz;i++){
+        reverse(strings[i],strlen(strings[i]));
+        cout<<"the reverse for string "<<i+1<<" is: " << strings[i] <<endl;
+    }
+    // find the most vowel wali string
+    int maxv=0,maxi=0;
+    for(int i=0;i<sz;i++){
+        int vow=vowelnum(strings[i]);
+        if(vow>maxv){
+            maxv=vow;
+            maxi=i;
+        }
+    }
+    cout<<"the string with the most vowels is: "<<strings[maxi]<<endl;
+
+    //find average
+    int sum=0;
+    for(int i=0;i<sz;i++){
+        sum+=strlen(strings[i]);
+    }
+    double avg=static_cast<double>(sum)/sz;
+    cout<<"the average length of all strings is: "<<avg<<endl;
+
+}
