@@ -1,0 +1,44 @@
+/*Write a C++ program that reads a group of n numbers from the user and stores them in a dynamically
+allocated array of type float. Then, the program should:
+ Calculate the average of the numbers.
+ Find the number closest to the average.
+ Print the average and the number closest to it.
+ Use pointer notation wherever possible.*/
+
+
+
+
+#include <iostream>
+using namespace std;
+#include <math.h>
+
+int main(){
+    int size;
+    cout<<"enter number of elements: ";
+    cin>>size;
+    float *arr=new float[size];
+    float sum=0;
+
+    //input
+    for(int i=0;i<size;i++){
+        cout<<"enter element "<<i+1<<": ";
+        cin>>arr[i];
+        sum+=arr[i];
+    }
+    float avg=sum/size;
+
+    float mindiff=9999999.9;
+    float diff,cls;
+    for(int i=0;i<size;i++){
+        diff=arr[i]-avg;
+        if (diff<0){
+            diff=-diff;
+        } else if (diff<mindiff){
+            mindiff=diff;
+            cls=arr[i];
+        }
+         
+    }
+    cout<<"the average is: "<<avg<<"\nthe closest number to that is: "<<cls<<endl;
+
+}
