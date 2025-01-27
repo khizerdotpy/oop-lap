@@ -1,0 +1,48 @@
+#include <cstring>
+#include <iostream>
+using namespace std;
+
+int* findUniqueElements(int *inputArray, int arraySize, int &uniqueCount) {
+    int elementFrequency[100] = {0};
+    int *uniqueElementsArray = new int[arraySize];
+    uniqueCount = 0;
+
+    for (int index = 0; index < arraySize; index++) {
+        elementFrequency[inputArray[index]] = 1;
+    }
+
+    for (int value = 0; value < 100; value++) {
+        if (elementFrequency[value] == 1) {
+            uniqueElementsArray[uniqueCount++] = value;
+        }
+    }
+
+    return uniqueElementsArray;
+}
+
+int main() {
+    int arraySize;
+    cout << "Enter size of array: ";
+    cin >> arraySize;
+
+    int* inputArray = new int[arraySize];
+
+    for (int index = 0; index < arraySize; index++) {
+        cout << "Enter element " << index + 1 << ": ";
+        cin >> inputArray[index];
+    }
+
+    int uniqueCount;
+    int* uniqueElementsArray = findUniqueElements(inputArray, arraySize, uniqueCount);
+
+    cout << "Unique elements in the array are: ";
+    for (int index = 0; index < uniqueCount; index++) {
+        cout << uniqueElementsArray[index] << " ";
+    }
+    cout << endl;
+
+    delete[] inputArray;
+    delete[] uniqueElementsArray;
+
+    return 0;
+}
