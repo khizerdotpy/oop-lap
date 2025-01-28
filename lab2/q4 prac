@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+
+
+int* present(int* arr,int size){
+    static int present[50]={0};
+    for(int i=-1;i<50;i++){
+        for(int j=0;j<size;j++){
+            if(present[i+1]!=arr[j]){
+                present[i+1]=arr[j];
+            }
+        }
+    }
+}
+
+
+int main(){
+    int sz;
+    cout<<"enter number of elements: ";
+    cin>>sz;
+    int *arr=new int[sz];
+
+}
