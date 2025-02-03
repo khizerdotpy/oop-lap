@@ -1,0 +1,19 @@
+#include <iostream>
+using namespace std;
+
+class Number{
+    public:
+    int value;
+    Number(int v=0) : value(v){}
+    Number add(const Number& other){
+        return Number(value + other.value);
+    }
+};
+
+int main() {
+    Number o1(10);
+    Number o2(20);
+    Number o3= o1.add(o2);
+    cout<<"sum: "<<o3.value<<endl;
+    return 0;
+}
