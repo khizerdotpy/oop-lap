@@ -1,0 +1,76 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Calendar {
+    int year;
+    int nmonth = 12, nday = 31;
+    string** cal;
+
+public:
+    // Constructor for dma array of pointers
+    Calendar(int yr) : year(yr) {
+        cal = new string*[nmonth];
+        for (int i = 0; i < nmonth; ++i) {
+            cal[i] = new string[nday];
+        }
+    }
+
+    // Destructor to free allocated memory
+    ~Calendar() {
+        for (int i = 0; i < nmonth; ++i) {
+            delete[] cal[i];
+        }
+        delete[] cal;
+    }
+
+    void addTask(const string& detail, int date, int mnth) {
+        if (mnth < 1 || mnth > 12 || date < 1 || date > 31) {
+            cout << "Invalid date or month. Task not added.\n";
+            return;
+        }
+        cal[mnth - 1][date - 1] = detail;
+        cout << "Task added successfully.\n";
+    }
+
+    void removeTask(int date, int mnth) {
+        if (mnth < 1 || mnth > 12 || date < 1 || date > 31) {
+            cout << "Invalid date or month. Task not removed.\n";
+            return;
+        }
+        cal[mnth - 1][date - 1] = "";
+        cout << "Task removed successfully.\n";
+    }
+
+    void showTasks() {
+        cout << "Tasks for the year " << year << ":\n";
+        for (int i = 0; i < nmonth; ++i) {
+            for (int j = 0; j < nday; ++j) {
+                if (!cal[i][j].empty()) {
+                    cout << "Month " << i + 1 << ", Day " << j + 1 << ": " << cal[i][j] << "\n";
+                }
+            }
+        }
+    }
+};
+
+int main() {
+    Calendar myCalendar(2025);
+
+    myCalendar.addTask("a third mystery birthday", 5, 3);
+    myCalendar.addTask("birthday free day", 12, 6);
+    myCalendar.addTask("surprise birthday", 25, 7);
+    myCalendar.addTask("second birthday?", 14, 4);
+    myCalendar.addTask("birthday", 8, 2);
+    
+    cout << "\nCurrent Task List:\n";
+    myCalendar.showTasks();
+
+    myCalendar.removeTask(12, 6);
+    //every day is birthday day
+    
+    cout << "\nUpdated Task List after Removal:\n";
+    myCalendar.showTasks();
+    
+    return 0;
+}
