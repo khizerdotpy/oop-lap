@@ -26,10 +26,10 @@ class Employee{
     bool isManager(){
         if(department=="Management"){
             cout<<"\nyep manager\n";
-            return 1;
+            return true;
         } else {
             cout<<"\nnot manager\n";
-            return 0;
+            return false;
         }
     }
 
