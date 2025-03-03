@@ -1,0 +1,27 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class LoanHelper{
+
+    static float interestRate;
+    float loan;
+    int months;
+
+    public:
+    LoanHelper(float l, int m):loan(l),months(m){}
+
+    void repayment(){
+        float amt=0.0;
+        amt=loan/months;
+        amt+=interestRate*amt;
+        cout<<"\nYou have to pay "<<amt<<" every "<<months<<" months"<<" to repay your loan";
+    }
+};
+float LoanHelper::interestRate=0.05;
+
+int main(){
+    LoanHelper ahmedLoan(500.0,24);
+    ahmedLoan.repayment();
+    return 0;
+}
