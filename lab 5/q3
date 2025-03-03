@@ -1,0 +1,36 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class ValidateString{
+
+    string sentence;
+
+    public:
+    ValidateString(string sent):sentence(sent){}
+
+    void isValid(){
+
+        for(int i=0;i<sentence.length();i++){
+            if((sentence.at(i)>='a'&&sentence.at(i)<='z')||(sentence.at(i)>='A'&&sentence.at(i)<='Z'||sentence.at(i)==' ')){} 
+            else {
+                cout<<"\nString: "<<sentence<<" is not valid."<<endl;return;
+            }
+        }
+        cout<<"\nString: "<<sentence<<" is valid."<<endl;
+    }
+
+
+};
+
+int main(){
+    ValidateString s1("the birds are government drones beware");
+    ValidateString s2("the are eyes everywhere!!");
+    ValidateString s3("thehillshaveEYES");
+
+    s1.isValid();
+    s2.isValid();
+    s3.isValid();
+
+    return 0;
+}
