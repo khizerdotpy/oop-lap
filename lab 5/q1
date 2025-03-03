@@ -1,0 +1,49 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Square{
+    float sideLength;
+    float area;
+    static float allareas;
+
+    public:
+
+    Square():sideLength(0.0),area(0.0){}
+    Square(float side):sideLength(side){}
+
+    void calcarea(){
+        area=sideLength*sideLength;
+        allareas+=area;
+        cout<<"\nArea is: "<<area<<endl;
+    }
+
+    void setSideLength(float side){sideLength=side;}
+    float getSideLength(){return sideLength;}
+    void setArea(){calcarea();}
+    float getArea(){return area;}
+    float getAllAreas(){return allareas;}
+
+};
+float Square::allareas=0.0;
+
+int main(){
+    Square squares[3];
+
+    for(int i=0;i<3;i++){
+        float x=0;
+        cout<<"enter side for "<<i+1<<" square(in decimals): ";
+        cin>>x;
+        squares[i].setSideLength(x);
+    }
+
+    for(int i=0;i<3;i++){
+        squares[i].setArea();
+        cout<<"\nSide for "<<i+1<<" square: "<<squares[i].getSideLength()<<endl;
+        cout<<"\nArea for "<<i+1<<" square: "<<squares[i].getArea()<<endl;
+        cout<<"\nCurrent sum of areas: "<<squares[i].getAllAreas()<<endl;
+    }
+
+    return 0;
+    
+}
