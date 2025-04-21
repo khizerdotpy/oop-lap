@@ -137,11 +137,11 @@ public:
 };
 
 int main() {
-    Circle circle(0, 0, "red", 5);
-    Rectangle rectangle(1, 1, "blue", 4, 6);
-    Triangle triangle(2, 2, "green", 3, 4, 3, 4, 5);
-    vector<pair<double, double>> polygonVertices = {{0, 0}, {5, 0}, {5, 5}, {0, 5}};
-    Polygon polygon(3, 3, "purple", polygonVertices);
+    Circle circle(4, 2, "orange", 7);
+    Rectangle rectangle(0, -3, "teal", 10, 2);
+    Triangle triangle(1.5, 1.5, "yellow", 6, 4, 5, 5, 6);
+    vector<pair<double, double>> polygonVertices = {{2, 3}, {6, 2}, {7, 6}, {3, 7}};
+    Polygon polygon(5, 5, "cyan", polygonVertices);
 
     circle.draw();
     cout << "Area: " << circle.calculateArea() << ", Perimeter: " << circle.calculatePerimeter() << "\n";
@@ -157,3 +157,4 @@ int main() {
 
     return 0;
 }
+
