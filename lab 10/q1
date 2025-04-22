@@ -1,0 +1,49 @@
+#include <iostream>
+#include <string.h>
+#include <fstream>
+using namespace std;
+
+class Student{
+
+    int id;
+    string name;
+    float gpa;
+
+    public:
+    Student(){
+        cout<<"Enter student name: ";
+        cin>>name;
+        cout<<"Enter student id: ";
+        cin>>id;
+        cout<<"Enter student gpa: ";
+        cin>>gpa;
+    }
+
+    friend ostream& operator<<(ostream& out,const Student& s);
+
+
+};
+
+ostream& operator<<(ostream& out, const Student& s){
+    out<<s.name<<endl<<s.id<<endl<<s.gpa<<endl;
+    return out;
+}
+
+int main(){
+    ofstream file;
+    file.open("student.txt",ios::app);
+    if(!file){
+        cout<<"File opening failed!\n";
+        exit(1);
+    }
+
+    for(int i=0;i<5;i++){
+        Student s;
+        file<<s;
+    }
+
+    file.close();
+    cout<<"Data written successfully!\n";
+
+    return 0;
+}
